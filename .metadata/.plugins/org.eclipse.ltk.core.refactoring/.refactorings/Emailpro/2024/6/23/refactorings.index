@@ -1,0 +1,13 @@
+1717814839466	Rename resource 'board'
+1717815087039	Rename package 'board'
+1717815566005	Move 'MemberDAO.java' to 'dao'
+1717815568504	Move 'MemberVO.java' to 'vo'
+1717815642227	Move 2 resources to 'main'
+1717815647547	Move 2 resources to 'java'
+1717815657091	Copy folders
+1717815723059	Move 'SpamDAO.java' to 'dao'
+1717815725117	Move 'SpamVO.java' to 'vo'
+1717815727303	Move 'TrashDAO.java' to 'dao'
+1717815730795	Move 'TrashMailVO.java' to 'vo'
+1717815801589	Rename resource 'TrashMailVO.java'
+1717815807030	Rename resource 'TrashDAO.java'

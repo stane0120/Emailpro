@@ -1,0 +1,83 @@
+<%@page import="mail.vo.MailVO"%>
+<%@page import="mail.dao.MailDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--
+     http://localhost:8080/Mission-Web/jsp/mail/detail.jsp?no=3 요청
+     
+     작업순서
+     1. 파라미터추출(게시판번호)
+     2. 추출된 번호에 해당 게시물 조회(t_mail)
+     2-1. 공유영역 게시물 등록
+     3. 조회된 게시물 웹브라우저 출력
+ --%>
+<%
+     int no = Integer.parseInt(request.getParameter("mailCd"));
+     
+     MailDAO mailDao = new mailDao();
+     MailVO mail = mailDao.selectByNo(mailCd);
+     
+     pageContext.setAttribute("mail", mail);
+ %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/Mission-Web/resource/css/layout.css">
+<link rel="stylesheet" href="/Mission-Web/resource/css/table.css">
+<script>
+     let doAction = function(type) {
+    	 switch(type) {
+    	 case 'L':
+    		     location.href = "list.jsp"
+    		     break
+    	 }
+     }
+</script>
+</head>
+<body>
+	<header>
+		<jsp:include page="/include/topMenu.jsp" />
+	</header>
+	<section>
+		<div align="center">
+			<h2>상세게시글</h2>
+			<br>
+			<table style="width: 100%" border="1">
+				<tr>
+					<th width="25%">번호</th>
+					<td>${ mail.no }</td>
+				</tr>
+				<tr>
+					<th width="25%">제목</th>
+					<td>${ mail.title }</td>
+				</tr>
+				<tr>
+					<th width="25%">작성자</th>
+					<td>${ mail.writer }</td>
+				</tr>
+				<tr>
+					<th width="25%">내용</th>
+					<td>${ mail.content }</td>
+				</tr>
+				<tr>
+					<th width="25%">조회수</th>
+					<td>${ mail.viewCnt }</td>
+				</tr>
+				<tr>
+					<th width="25%">등록일</th>
+					<td>${ mail.regDate }</td>
+				</tr>
+			</table>
+			<br>
+			<button onclick="doAction('U')">수 정</button>
+			<button onclick="doAction('D')">삭 제</button>
+			<button onclick="doAction('L')">목 록</button>
+		</div>
+	</section>
+	<footer>
+		<%@ include file="/include/footer.jsp"%>
+	</footer>
+</body>
+</html>

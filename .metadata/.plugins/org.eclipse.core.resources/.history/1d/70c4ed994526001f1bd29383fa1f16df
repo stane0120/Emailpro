@@ -1,0 +1,45 @@
+<%@page import="util.KopoFileNamePolicy"%>
+<%@page import="mail.vo.MailVO"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+    /*
+       작업순서
+       1. 파라미터 추출(제목, 작성자, 내용)
+       2. 추출한 정보를 t_mail 테이블에 저장
+       3. 전체게시판(list.jsp)으로 이동
+    */
+    
+    request.setCharacterEncoding("utf-8");
+
+    String saveDirectory = "C:/Lecture/webworkspace/Emailpro/src/main/webapp/upload";
+
+    MultipartRequest multi = new MultipartRequest(request, saveDirectory, 1024*1024*3, "utf-8", new KopoFileNamePolicy());
+    
+    // 1. 게시물(t_mail) 저장
+    String mailTitle = multi.getParameter("mailTitle");
+    String mailContent = multi.getParameter("mailContent");
+    int mailSenderCd = Integer.parseInt(multi.getParameter("mailSenderCd"));
+    int mailReceiverCd = Interger.parseInt(multi.getParameter("mailReceiverCd"));
+    
+    MailVO mail = new MailVO();
+    mail.setMailTitle(mailTitle);
+    mail.setMailContent(mailContent);
+    mail.setMailSenderCd(mailSenderCd);
+    mail.setMailReceiverCd(mailReceiverCd);
+    
+    System.out.println(mail);
+%>
+
+<script>
+//  3단계
+
+    alert('새글등록을 완료하였습니다.')
+    location.href = "list2.jsp"
+    
+</script>
+
+
+
