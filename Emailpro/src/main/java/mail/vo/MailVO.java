@@ -13,8 +13,6 @@ public class MailVO {
 		super();
 	}
 
-	
-	
 	public MailVO(String mailTitle, String mailContent, int mailSenderCd, int mailReceiverCd) {
 		super();
 		this.mailTitle = mailTitle;
@@ -23,9 +21,16 @@ public class MailVO {
 		this.mailReceiverCd = mailReceiverCd;
 	}
 
-	
+	public MailVO(int mailCd, String mailTitle, int mailSenderCd, String mailSentDate) {
+		super();
+		this.mailCd = mailCd;
+		this.mailTitle = mailTitle;
+		this.mailSenderCd = mailSenderCd;
+		this.mailSentDate = mailSentDate;
+	}
 
-	public MailVO(int mailCd, String mailTitle, String mailContent, int mailSenderCd, int mailReceiverCd, String mailSentDate) {
+	public MailVO(int mailCd, String mailTitle, String mailContent, int mailSenderCd, int mailReceiverCd,
+			String mailSentDate) {
 		super();
 		this.mailCd = mailCd;
 		this.mailTitle = mailTitle;
@@ -35,7 +40,9 @@ public class MailVO {
 		this.mailSentDate = mailSentDate;
 	}
 
+	public MailVO(int int1, String string, String string2, int int2, int int3, int int4, String string3) {
 
+	}
 
 	public int getMailCd() {
 		return mailCd;
@@ -91,7 +98,6 @@ public class MailVO {
 
 	public void setMailSentDate(String mailSentDate) {
 		this.mailSentDate = mailSentDate;
-	}	
-	
+	}
 
 }

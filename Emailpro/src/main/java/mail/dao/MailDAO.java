@@ -152,6 +152,36 @@ public class MailDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();
-        }
+        }    
+    }
+        public MailVO selectByMailCd(int mailCd) {
+            MailVO mail = null;
+            String sql = "SELECT MAIL_CD, MAIL_TITLE, MAIL_CONTENT, MAIL_SENDER_CD, MAIL_RECEIVER_CD, MAIL_OPEN_CHK, MAIL_SENT_DATE "
+                       + "FROM TBL_MAIL "
+                       + "WHERE MAIL_CD = ?";
+            
+            try (
+                Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+            ) {
+                pstmt.setInt(1, mailCd);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        mail = new MailVO(
+                            rs.getInt("MAIL_CD"),
+                            rs.getString("MAIL_TITLE"),
+                            rs.getString("MAIL_CONTENT"),
+                            rs.getInt("MAIL_SENDER_CD"),
+                            rs.getInt("MAIL_RECEIVER_CD"),
+                            rs.getInt("MAIL_OPEN_CHK"),
+                            rs.getString("MAIL_SENT_DATE")
+                        );
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            return mail;
     }
 }

@@ -8,11 +8,14 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="user"/>
+			<item value="package mail.vo;"/>
 			<item value="board"/>
+			<item value="BoardVO"/>
+			<item value="user"/>
 		</list>
 		<list key="replacehistory">
 			<item value="mail"/>
+			<item value="MailVO"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

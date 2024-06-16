@@ -268,4 +268,35 @@ public class MemberDAO {
 		}
 		return memberCnt;
 	}
-}
+	
+	   public MemberVO login(MemberVO loginVO) {
+	        StringBuilder sql = new StringBuilder();
+	        sql.append("SELECT MEMBER_CD, MEMBER_ID, MEMBER_NM, MEMBER_BIRTHDATE, MEMBER_PHONE, MEMBER_STATUS, MEMBER_REGDATE ");
+	        sql.append("FROM TBL_MEMBER ");
+	        sql.append("WHERE MEMBER_ID = ? AND MEMBER_PW = ?");
+	        
+	        try (
+	            Connection conn = new ConnectionFactory().getConnection();
+	            PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+	        ) {
+	            pstmt.setString(1, loginVO.getMemberId());
+	            pstmt.setString(2, loginVO.getMemberPw());
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            if (rs.next()) {
+	                MemberVO member = new MemberVO();
+	                member.setMemberCd(rs.getInt("MEMBER_CD"));
+	                member.setMemberId(rs.getString("MEMBER_ID"));
+	                member.setMemberNm(rs.getString("MEMBER_NM"));
+	                member.setMemberBirthDate(rs.getString("MEMBER_BIRTHDATE"));
+	                member.setMemberPhone(rs.getString("MEMBER_PHONE"));
+	                member.setMemberStatus(rs.getString("MEMBER_STATUS"));
+	                member.setMemberRegDate(rs.getString("MEMBER_REGDATE"));
+	                return member;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return null;
+	    }
+	}
